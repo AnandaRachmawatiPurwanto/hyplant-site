@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HyPlant website
 
-## Getting Started
+Company website for HyPlant (autodosing hidroponik). Next.js 15 (App Router), TypeScript, plain CSS. No other libraries.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build check
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | What |
+|---|---|
+| `lib/content.ts` | All copy and data: sensors, notifications, features, screenshots, plants, contact placeholders |
+| `components/` | Page sections (Hero, HowItWorks, Notifications, Sections) |
+| `app/globals.css` | Design tokens and styles. Colors match `iOS-app/DesignSystem/Theme.swift` in the Berkelompok repo |
+| `public/img/` | Logo and plant photos copied from the app's `Assets.xcassets`, plus real app screenshots |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Before going live
 
-## Learn More
+- Fill `[EMAIL]`, `[LOKASI]`, `[INSTAGRAM]` in `lib/content.ts` (`contact`).
+- Screenshots in `public/img/screens/` come from the app on branch `pairing-link` (commit `4ccd1e2`), run with sample data. Retake them when the app UI changes.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Option A, from this folder: `npx vercel` (log in, accept defaults), then `npx vercel --prod`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Option B: push this folder to a GitHub repo, then on vercel.com choose **Add New → Project**, import the repo, and keep the detected Next.js settings.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The scroll animations use CSS scroll-driven animations (Chrome, Edge, Safari 26+). Other browsers show the finished hero without the animation.
